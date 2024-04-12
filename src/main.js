@@ -3,6 +3,9 @@ import { dialogueData_under } from "./constants_under";
 import { k } from "./kaboomCtx";
 import { displayDialogue, setCamScale } from "./utils";
 
+import { dialogueData_new,dialogueData_next_new } from "./constants_new";
+import { dialogueData_under_new } from "./constants_under_new";
+
 
 k.loadSprite("spritesheet", "./spritesheet.png", {
   sliceX: 39,
@@ -17,7 +20,10 @@ k.loadSprite("spritesheet", "./spritesheet.png", {
   },
 });
 
+
 k.loadSprite("map", "./map.png");
+
+k.loadSprite("new_map","./newmap.png");
 
 k.setBackground(k.Color.fromHex("#311047"));
 
@@ -27,10 +33,29 @@ let isKeyget = false;
 k.scene("main", async () => {
   ismain = true;
 
-  const mapData = await (await fetch("./map.json")).json();
-  const layers = mapData.layers;
+  // const mapData = await (await fetch("./map.json")).json();
+  // const layers = mapData.layers;
+  // const map = k.add([k.sprite("map"), k.pos(0), k.scale(scaleFactor)]);
+  // const player = k.make([
+  //   k.sprite("spritesheet", { anim: "idle-down" }),
+  //   k.area({
+  //     shape: new k.Rect(k.vec2(0, 3), 10, 10),
+  //   }),
+  //   k.body(),
+  //   k.anchor("center"),
+  //   k.pos(),
+  //   k.scale(scaleFactor),
+  //   {
+  //     speed: 250,
+  //     direction: "down",
+  //     isInDialogue: false,
+  //   },
+  //   "player",
+  // ]);
 
-  const map = k.add([k.sprite("map"), k.pos(0), k.scale(scaleFactor)]);
+  const mapData = await (await fetch("./newmap.json")).json();
+  const layers = mapData.layers;
+  const map = k.add([k.sprite("new_map"), k.pos(0), k.scale(scaleFactor)]);
 
   const player = k.make([
     k.sprite("spritesheet", { anim: "idle-down" }),
@@ -48,6 +73,7 @@ k.scene("main", async () => {
     },
     "player",
   ]);
+
 
   for (const layer of layers) {
     if (layer.name === "boundaries") {
@@ -78,7 +104,8 @@ k.scene("main", async () => {
               if(isKeyget){
                 //dialogue2を表示
                 displayDialogue(
-                  dialogueData_next[boundary.name],
+                  //dialogueData_next[boundary.name],
+                  dialogueData_next_new[boundary.name],
                   () => (player.isInDialogue = false),
                   boundary.name,
                   ismain,
@@ -86,7 +113,8 @@ k.scene("main", async () => {
               }else{
                 //dialogue1を表示
                 displayDialogue(
-                  dialogueData[boundary.name],
+                  //dialogueData[boundary.name],
+                  dialogueData_new[boundary.name],
                   () => (player.isInDialogue = false),
                   boundary.name,
                   ismain,
@@ -101,7 +129,8 @@ k.scene("main", async () => {
             // }else{
             }
               displayDialogue(
-                dialogueData[boundary.name],
+                //dialogueData[boundary.name],
+                dialogueData_new[boundary.name],
                 () => (player.isInDialogue = false),
                 boundary.name,
                 ismain,
@@ -259,13 +288,35 @@ k.scene("main", async () => {
 
 k.loadSprite("under_map","./map2.png");
 
+k.loadSprite("new_under_map","./newmap2.png");
+
 k.scene("under",async () =>{
   ismain = false;
 
-  const mapData = await (await fetch("./map2.json")).json();
-  const layers = mapData.layers;
+  // const mapData = await (await fetch("./map2.json")).json();
+  // const layers = mapData.layers;
+  // const map = k.add([k.sprite("under_map"), k.pos(0), k.scale(scaleFactor)]);
 
-  const map = k.add([k.sprite("under_map"), k.pos(0), k.scale(scaleFactor)]);
+  // const player = k.make([
+  //   k.sprite("spritesheet", { anim: "idle-down" }),
+  //   k.area({
+  //     shape: new k.Rect(k.vec2(0, 3), 10, 10),
+  //   }),
+  //   k.body(),
+  //   k.anchor("center"),
+  //   k.pos(),
+  //   k.scale(scaleFactor),
+  //   {
+  //     speed: 250,
+  //     direction: "down",
+  //     isInDialogue: false,
+  //   },
+  //   "player",
+  // ]);
+
+  const mapData = await (await fetch("./newmap2.json")).json();
+  const layers = mapData.layers;
+  const map = k.add([k.sprite("new_under_map"), k.pos(0), k.scale(scaleFactor)]);
 
   const player = k.make([
     k.sprite("spritesheet", { anim: "idle-down" }),
@@ -300,7 +351,8 @@ k.scene("under",async () =>{
           player.onCollide(boundary.name, () => {
             player.isInDialogue = true;
             displayDialogue(
-              dialogueData_under[boundary.name],
+              //dialogueData_under[boundary.name],
+              dialogueData_under_new[boundary.name],
               () => (player.isInDialogue = false),
               boundary.name,
               ismain,
