@@ -1,3 +1,5 @@
+let time = new Date();
+
 export const dialogueData_under_new = {
   "sofa": `私のソファがあります。ここでリラックスしてYouTubeを観ることが好きです。`,
   "shelf": `私の棚があります。服がたくさん収納されています。`,
@@ -5,10 +7,11 @@ export const dialogueData_under_new = {
   //bed: `私のベッドがあります。ふかふかでお気に入りです。`,
   resume: `私の名前は服部航大です。これは私の<a href="https://github.com/hato72" target="_blank">GitHub</a>アカウントです。ぜひチェックしてください。`,
   projects: `このページについての情報：　
-  これはJavaScriptでゲームを作成するためのライブラリであるKaboom.jsを使用して作成しました。
+  これはJavaScriptでゲームを作成するためのライブラリであるKaboom.jsを使用して作成しました。<br>
   マップやオブジェクトはフリー素材のtilesetなどを「Tiled」を用いて描画したものを使用しました。
   テキストはHTML/CSSでレンダリングされます。`,
   ladder: `上の部屋に上がる場合は"Move"ボタンをクリックしてください。`,
+  clock: `現在時刻は ${time} です。`,
   library: `私の棚があります。プログラミングや数学、英語、IT関連,IT資格本など様々な参考書が並べられています。`,
   key: `鍵が見つかりました。この鍵を使うことで1階にあるboxを開けることができます。`,
 };
